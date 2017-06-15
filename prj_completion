@@ -1,0 +1,24 @@
+#!/bin/bash
+
+PROJECT_BASE_PATH="$HOME/Documents/Project"
+
+_project_show() {
+    local project_path=$(echo $PWD | grep -e "^${PROJECT_BASE_PATH}")
+    if [ -z "$project_path" ]; then
+        project_path=$PROJECT_BASE_PATH
+    fi
+    local project_names=$(ls $project_path)
+
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    case "$cur" in
+	*)
+	    if [[ 1 -eq $COMP_CWORD ]]; then
+		COMPREPLY=( $(compgen -W "$project_names" -- ${cur} ) )
+	    fi
+	    ;;
+    esac
+}
+complete -F _project_show prj

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+PROJECT_PREFIX="$HOME/Documents/Project"
+echo "$PWD"
+PROJECT_PATH=$(echo $(dirname $PWD) | grep -e "^$PROJECT_PREFIX")
+if [ -z $PROJECT_PATH ]; then
+    PROJECT_PATH=$PROJECT_PREFIX
+fi
+PROJECT_NAME="$1"
+cd $PROJECT_PATH/$PROJECT_NAME
+
