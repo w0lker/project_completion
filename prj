@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 PROJECT_PREFIX="$HOME/Documents/Project"
-echo "$PWD"
-PROJECT_PATH=$(echo $(dirname $PWD) | grep -e "^$PROJECT_PREFIX")
+PROJECT_PATH=$(echo $PWD | grep -e "^$PROJECT_PREFIX")
 if [ -z $PROJECT_PATH ]; then
     PROJECT_PATH=$PROJECT_PREFIX
 fi
 PROJECT_NAME="$1"
+echo -e "\033[32m[$PROJECT_PATH/$PROJECT_NAME]\033[0m"
 cd $PROJECT_PATH/$PROJECT_NAME
 
